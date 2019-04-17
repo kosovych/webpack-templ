@@ -4,8 +4,8 @@
   "description": "HW",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --progress --mode=development",
-    "build": "webpack --mode=production"
+    "dev": "webpack-dev-server --env.NODE_ENV=dev --progress --mode=development",
+    "build": "webpack --env.NODE_ENV=build --mode=production"
   },
   "author": "Kosovych",
   "license": "ISC",
