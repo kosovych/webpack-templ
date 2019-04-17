@@ -11,20 +11,20 @@ const minifyOption = {
   removeRedundantAttributes: true,
   removeScriptTypeAttributes: true,
   removeStyleLinkTypeAttributes: true,
-  useShortDoctype: true
-}
+  useShortDoctype: true,
+};
 
-module.exports = env => {
+module.exports = (env) => {
   console.log('NODE_ENV: ', env.NODE_ENV);
   return {
     entry: {
-      app: './src/index.js'
+      app: './src/index.js',
     },
 
     output: {
       filename: 'js/[name].js',
       path: path.resolve(__dirname, './dist'),
-      publicPath: '/'
+      publicPath: '/',
     },
 
     module: {
@@ -36,10 +36,10 @@ module.exports = env => {
             loader: 'file-loader',
             options: {
               options: {
-                outputPath: '/fonst'
-              }
+                outputPath: '/fonst',
+              },
             },
-          }
+          },
         },
         {
           test: /\.(png|svg|jpg|gif)$/,
@@ -47,16 +47,16 @@ module.exports = env => {
             loader: 'file-loader',
             options: {
               outputPath: (url, resourcePath, context) => {
-                return `img/${url}`
-              }
-            }
+                return `img/${url}`;
+              },
+            },
           },
         },
         {
-          enforce: "pre",
+          enforce: 'pre',
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: "eslint-loader"
+          loader: 'eslint-loader',
         },
         {
           test: /\.js$/,
@@ -64,8 +64,8 @@ module.exports = env => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
-            }
+              presets: ['@babel/preset-env'],
+            },
           },
         },
 
@@ -73,29 +73,29 @@ module.exports = env => {
           test: /\.scss$/,
           exclude: /node_modules/,
           use: [{
-              loader: 'style-loader',
+            loader: 'style-loader',
+          },
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            options: {url: false},
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: `./postcss.config.js`,
+              },
             },
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
-            {
-              loader: 'css-loader',
-              options: {url: false}
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                config: {
-                  path: `./postcss.config.js`
-                },
-              }
-            },
-            {
-              loader: 'sass-loader',
-            }
+          },
+          {
+            loader: 'sass-loader',
+          },
           ],
         },
-      ]
+      ],
     },
 
     plugins: [
@@ -104,17 +104,17 @@ module.exports = env => {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'src/index.html',
-        minify: env.NODE_ENV == 'build' ? minifyOption : false
+        minify: env.NODE_ENV == 'build' ? minifyOption : false,
       }),
       new HtmlWebpackPlugin({
         filename: 'blog.html',
         template: 'src/blog.html',
-        minify: env.NODE_ENV == 'build' ? minifyOption : false
+        minify: env.NODE_ENV == 'build' ? minifyOption : false,
       }),
       new HtmlWebpackPlugin({
         filename: 'post.html',
         template: 'src/post.html',
-        minify: env.NODE_ENV == 'build' ? minifyOption : false
+        minify: env.NODE_ENV == 'build' ? minifyOption : false,
       }),
       new MiniCssExtractPlugin({
         // filename: 'main.css', dev
@@ -126,7 +126,7 @@ module.exports = env => {
         from: 'src/img',
         to: './img',
         toType: 'dir',
-      }, ]),
+      }]),
     ],
 
     devServer: {
@@ -134,7 +134,7 @@ module.exports = env => {
       contentBase: path.join(__dirname, 'dist'),
       port: 3000,
       open: true,
-      publicPath: '/'
-    }
-  }
-}
+      publicPath: '/',
+    },
+  };
+};
