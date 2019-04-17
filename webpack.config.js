@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -42,7 +43,8 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: [{
+        use: [
+          {
             loader: 'style-loader',
           },
           {
@@ -59,6 +61,8 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
+
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/index.html',
@@ -67,12 +71,13 @@ module.exports = {
       filename: 'blog.html',
       template: 'src/blog.html',
     }),
-    new MiniCssExtractPlugin({
-      filename: 'css/main.css',
-    }),
     new HtmlWebpackPlugin({
       filename: 'post.html',
       template: 'src/post.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'main.css',
+      // chunkFilename: '[id].css',
     }),
     new CopyPlugin([
       {
@@ -82,7 +87,6 @@ module.exports = {
       },
      ]),
   ],
-
 
   devServer: {
     overlay: true,
