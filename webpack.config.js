@@ -106,16 +106,6 @@ module.exports = (env) => {
         template: 'src/index.html',
         minify: env.NODE_ENV == 'build' ? minifyOption : false,
       }),
-      new HtmlWebpackPlugin({
-        filename: 'blog.html',
-        template: 'src/blog.html',
-        minify: env.NODE_ENV == 'build' ? minifyOption : false,
-      }),
-      new HtmlWebpackPlugin({
-        filename: 'post.html',
-        template: 'src/post.html',
-        minify: env.NODE_ENV == 'build' ? minifyOption : false,
-      }),
       new MiniCssExtractPlugin({
         // filename: 'main.css', dev
         // filename: env.NODE_ENV == 'build' ? 'css/main.css' : 'css/main.css',
@@ -127,12 +117,17 @@ module.exports = (env) => {
         to: './img',
         toType: 'dir',
       }]),
+
+      new webpack.ProvidePlugin({
+        jQuery: 'jquery',
+        $: 'jquery',
+      }),
     ],
 
     devServer: {
       overlay: true,
       contentBase: path.join(__dirname, 'dist'),
-      port: 3000,
+      port: 3001,
       open: true,
       publicPath: '/',
     },

@@ -15,8 +15,9 @@ module.exports = {
     "rules": {
         "require-jsdoc": "off",
         "linebreak-style": "off",
+        "no-invalid-this": "off"
     },
     "parserOptions": {
       "sourceType": "module"
-  }
+  },
 };
