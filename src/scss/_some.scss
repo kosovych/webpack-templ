@@ -1,4 +1,27 @@
+@font-face {
+  font-family: 'OpenSans Bold';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/OpenSans-Bold') format('woff'),
+}
 h1 {
   color: lightgreen;
+  font-family: 'OpenSans Bold';
   background-image: url(../img/1.png);
+  border-radius: 13px;
+  overflow: hidden;
+  border: 3px solid red;
+}
+
+// test
+
+
+h2 {
+  color: lightgreen;
+  font-family: 'OpenSans Bold';
+  background-image: url(../img/1.png);
+  border-radius: 13px;
+  overflow: hidden;
+  border: 3px solid red;
+  display: flex;
 }
