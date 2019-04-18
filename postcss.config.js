@@ -6,11 +6,11 @@ module.exports = {
         'default', {
           discardComments: {
             removeAll: true,
-          }
-        }
-      ]
+          },
+        },
+      ],
     }),
   ],
-  loader: "postcss-loader",
+  loader: 'postcss-loader',
+};
 
-}
