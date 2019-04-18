@@ -107,10 +107,7 @@ module.exports = (env) => {
         minify: env.NODE_ENV == 'build' ? minifyOption : false,
       }),
       new MiniCssExtractPlugin({
-        // filename: 'main.css', dev
-        // filename: env.NODE_ENV == 'build' ? 'css/main.css' : 'css/main.css',
         filename: 'css/main.css',
-        // chunkFilename: '[id].css',
       }),
       new CopyPlugin([{
         from: 'src/img',
